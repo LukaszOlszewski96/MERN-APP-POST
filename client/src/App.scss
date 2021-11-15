@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
+
+$colors: (
+  text: #fff,
+  primary-background:linear-gradient(to right top, #634cdd, #6a45cf, #6f3dc0, #7237b3, #7330a5),
+  button: #8b26ed
+);
+
+@function color($color-name) {
+  @return map-get($colors, $color-name)
+}
+
+$font-size: (
+  logo: 2vw,
+);
+
+@function font-size($f-size) {
+  @return map-get($font-size, $f-size )
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a{
+  text-decoration: none;
+  color: color(text);
+}
+
+
+body {
+  font-family: 'Montserrat';
+
+    .App {
+      width: 100vw;
+      height: 100vh;
+      background: color(primary-background);
+
+        .logo {
+          font-size: font-size(logo);
+          font-weight: 600;
+          position: relative;
+          top: 1vw;
+          left: 2vw;
+        }
+    }
+}
