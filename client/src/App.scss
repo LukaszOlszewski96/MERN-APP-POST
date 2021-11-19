@@ -4,7 +4,9 @@
 $colors: (
   text: #fff,
   primary-background:linear-gradient(to right top, #634cdd, #6a45cf, #6f3dc0, #7237b3, #7330a5),
-  button: #8b26ed
+  button: linear-gradient(267.27deg, #31318C 0%, #312D97 23.23%, #3227A1 47.71%, #361EAA 75.31%, #3C11B3 100%),
+  button-hover: linear-gradient(267.27deg, rgba(49, 49, 140, 0.7) 0%, rgba(49, 45, 151, 0.7) 23.23%, rgba(50, 39, 161, 0.7) 47.71%, rgba(54, 30, 170, 0.7) 75.31%, rgba(60, 17, 179, 0.7) 100%),
+  border: #C4C4C4
 );
 
 @function color($color-name) {
@@ -12,12 +14,16 @@ $colors: (
 }
 
 $font-size: (
-  logo: 2vw,
+  logo: 2em,
+  form-title: 18px,
+  form-text: 12px,
 );
 
 @function font-size($f-size) {
   @return map-get($font-size, $f-size )
 }
+
+$box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
 
 * {
   margin: 0;
@@ -34,16 +40,136 @@ body {
   font-family: 'Montserrat';
 
     .App {
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
       background: color(primary-background);
 
-        .logo {
-          font-size: font-size(logo);
-          font-weight: 600;
-          position: relative;
-          top: 1vw;
-          left: 2vw;
+
+        header{
+          width: 100%;
+          height: 50px;
+          display: flex;
+          justify-content: center;
+
+
+          .navbar{
+            height: 100%;
+            width: 80%;
+            align-items: center;
+            display: flex;
+
+              .logo {
+                font-size: font-size(logo);
+                font-weight: 600;
+              }
+          }
+        }
+
+        .horizontal-box{
+          height: 80vh;
+          width: 80%;
+          margin: auto;
+          display: flex;
+          flex-direction: row;
+
+            .left{
+              background-color: bisque;
+              width: 50%;
+            }
+
+            .right{
+              width: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+                .form-conteiner{
+                  width: 60%;
+                  height: 90%;
+                  background-color: color(text);
+                  border-radius: 10px;
+                  display: flex;
+                  flex-direction: column;
+                  box-shadow: $box-shadow;
+
+                    .form-title{
+                      text-align: center;
+                      font-size: font-size(form-title);
+                      margin-bottom: 20px;
+                      font-weight: bold;
+                      margin-top: 30px;
+                    }
+
+                    form{
+                      height: auto;
+                      width: 80%;
+                      margin-left: auto;
+                      margin-right: auto;
+                      margin-bottom: 15px;
+                      display: flex;
+                      flex-direction: column;
+
+                        label{
+                          font-size: font-size(form-text);
+                          font-weight: 600;
+                          margin-bottom: 5px;
+                        }
+
+                        input, textarea{
+                          outline: none;
+                          border: 1px solid color(border) ;
+                          border-radius: 5px;
+                          padding: 0 5px 0 5px;
+                        }
+
+                        input[type="text"]{
+                          width: 100%;
+                          height: 30px;
+                        }
+
+                        textarea{
+                          height: 100px;
+                          width: 100%;
+                          margin-top: 10px;
+                          padding-top: 5px;
+                          padding-bottom: 5px;
+                          resize: none;
+
+                          textarea::-webkit-scrollbar {
+                            width: 5px;
+                          }
+
+                          textarea::-webkit-scrollbar-thumb {
+                            background-color: color(border);
+                          }
+                        }
+
+                        .input-file{
+                          border: none;
+                          border-radius: 0;
+                          padding: 0 0 0 0;
+                    }
+                  }
+                  button{
+                    width: 150px;
+                    height: 30px;
+                    border-radius: 5px;
+                    margin-top: 50px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    background: color(button);
+                    color: color(text);
+                    border: none;
+                  }
+
+                  button:hover{
+                    background: color(button-hover);
+                    cursor: pointer;
+                  }
+                }
+            }
         }
     }
 }
